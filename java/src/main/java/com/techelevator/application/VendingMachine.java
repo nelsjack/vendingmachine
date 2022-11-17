@@ -8,12 +8,13 @@ import com.techelevator.ui.UserOutput;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
-public class VendingMachine 
+public class VendingMachine
 {
     private Inventory inventory = new Inventory();
-    private BigDecimal moneyProvided = new BigDecimal(0);
+    private BigDecimal moneyProvided = new BigDecimal(0.00).setScale(2, RoundingMode.HALF_EVEN);
 
     public void run() {
 
@@ -21,7 +22,6 @@ public class VendingMachine
         {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
-            String purchaseChoice = UserInput.getPurchaseOption();
 
             if(choice.equals("display"))
             {
@@ -32,8 +32,10 @@ public class VendingMachine
             {
                 // make a purchase
                 while(true) {
+                    String purchaseChoice = UserInput.getPurchaseOption(moneyProvided);
                     if(purchaseChoice.equals("feed money")) {
-
+                      BigDecimal fedMoney =  UserInput.getFeedMoneyAmount();
+                    moneyProvided =  moneyProvided.add(fedMoney);
                     }
                     else if(purchaseChoice.equals("select item")) {
 
@@ -71,7 +73,8 @@ public class VendingMachine
       }
     }
 
-    public BigDecimal getMoneyProvided() {
-        return moneyProvided;
-    }
 }
+
+
+
+

@@ -12,6 +12,10 @@ public class Inventory {
     listOfItem.add(item);
 }
 
+    public List<Item> getListOfItem() {
+        return listOfItem;
+    }
+
     public void displayInventory() {
         for (Item currentItem : listOfItem) {
             if (currentItem.getAmount() < 1) {
