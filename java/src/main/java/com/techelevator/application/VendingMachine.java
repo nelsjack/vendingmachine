@@ -12,22 +12,36 @@ import java.util.Scanner;
 
 public class VendingMachine 
 {
-    Inventory inventory = new Inventory();
-    public void run()
-    {
+    private Inventory inventory = new Inventory();
+    private BigDecimal moneyProvided = new BigDecimal(0);
+
+    public void run() {
 
         while(true)
         {
             UserOutput.displayHomeScreen();
             String choice = UserInput.getHomeScreenOption();
+            String purchaseChoice = UserInput.getPurchaseOption();
 
             if(choice.equals("display"))
             {
                 // display the vending machine slots
+                inventory.displayInventory();
             }
             else if(choice.equals("purchase"))
             {
                 // make a purchase
+                while(true) {
+                    if(purchaseChoice.equals("feed money")) {
+
+                    }
+                    else if(purchaseChoice.equals("select item")) {
+
+                    }
+                    else if(purchaseChoice.equals("finish transaction")) {
+                        break;
+                    }
+                }
             }
             else if(choice.equals("exit"))
             {
@@ -36,6 +50,7 @@ public class VendingMachine
             }
         }
     }
+
     public void stock(){
         File inputFile = new File("catering.csv");
 
@@ -54,5 +69,9 @@ public class VendingMachine
       catch (FileNotFoundException e){
           System.out.println("File not found.");
       }
+    }
+
+    public BigDecimal getMoneyProvided() {
+        return moneyProvided;
     }
 }

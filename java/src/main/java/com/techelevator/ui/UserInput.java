@@ -1,5 +1,7 @@
 package com.techelevator.ui;
 
+import com.techelevator.VendingMachineCLI;
+
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -25,7 +27,7 @@ public class UserInput
         System.out.print("Please select an option: ");
 
         String selectedOption = scanner.nextLine();
-        String option = selectedOption.trim().toLowerCase();
+        String option = selectedOption.trim().toUpperCase();
 
         if (option.equals("D"))
         {
@@ -46,5 +48,34 @@ public class UserInput
 
     }
 
+    public static String getPurchaseOption() {
+        System.out.println("(M) Feed Money");
+        System.out.println("(S) Select Item");
+        System.out.println("(F) Finish Transaction");
+        System.out.println();
+        System.out.println("Current Money Provided: " + );
+        System.out.println();
+        System.out.print("Please select an option: ");
+
+        String selectedOption = scanner.nextLine();
+        String option = selectedOption.trim().toUpperCase();
+
+        if (option.equals("M"))
+        {
+            return "feed money";
+        }
+        else if (option.equals("S"))
+        {
+            return "select item";
+        }
+        else if (option.equals("F"))
+        {
+            return "finish transaction";
+        }
+        else
+        {
+            return "";
+        }
+    }
     
 }
