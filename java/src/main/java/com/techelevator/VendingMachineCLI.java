@@ -7,7 +7,9 @@ public class VendingMachineCLI
     public static void main(String[] args) 
     {
         VendingMachine vendingMachine = new VendingMachine();
+        vendingMachine.stock();
         vendingMachine.run();
+
     }
     
 }
