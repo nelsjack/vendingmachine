@@ -34,11 +34,26 @@ public class VendingMachine
                 while(true) {
                     String purchaseChoice = UserInput.getPurchaseOption(moneyProvided);
                     if(purchaseChoice.equals("feed money")) {
-                      BigDecimal fedMoney =  UserInput.getFeedMoneyAmount();
-                    moneyProvided =  moneyProvided.add(fedMoney);
+                        BigDecimal fedMoney =  UserInput.getFeedMoneyAmount();
+                        moneyProvided =  moneyProvided.add(fedMoney);
                     }
                     else if(purchaseChoice.equals("select item")) {
+                        // display inventory and allow user to input a slot identifier to pick item
+                        inventory.displayInventory();
+                        String userChoice = UserInput.selectItem();
+                        for(Item currentItem : inventory.getListOfItem()) {
+                            if(currentItem.getSlotIdentifier().equals(userChoice)) {
+                                if (checkForValidSelection(currentItem)) {
+                                    // then, moneyProvided - price, .setAmount(.getAmount - 1)
+                                    // UserOutput.displayDispensingMessage(name, price, moneyProvided)
+                                } else if(currentItem.getAmount() < 1) {
+                                    // sout NOT AVAILABLE
+                                } else if(moneyProvided.compareTo(currentItem.getPrice()) == -1) {
+                                    // sout Insert more funds
+                                }
 
+                            }
+                        }
                     }
                     else if(purchaseChoice.equals("finish transaction")) {
                         break;
@@ -71,6 +86,14 @@ public class VendingMachine
       catch (FileNotFoundException e){
           System.out.println("File not found.");
       }
+    }
+
+    public boolean checkForValidSelection(Item item) {
+        if (item.getAmount() > 0 && moneyProvided.compareTo(item.getPrice()) >= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

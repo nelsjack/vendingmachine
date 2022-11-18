@@ -3,10 +3,11 @@ package com.techelevator.models;
 import java.math.BigDecimal;
 
 public class Item {
+
     private String name;
     private BigDecimal price;
     private String slotIdentifier;
-    private int amount=6;
+    private int amount = 6;
     private String type;
 
     public Item(String name, BigDecimal price, String slotIdentifier, String type) {

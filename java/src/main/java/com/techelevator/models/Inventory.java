@@ -1,5 +1,8 @@
 package com.techelevator.models;
 
+import com.techelevator.ui.UserOutput;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +21,14 @@ public class Inventory {
 
     public void displayInventory() {
         for (Item currentItem : listOfItem) {
+            String slotIdentifier = currentItem.getSlotIdentifier();
+            String name = currentItem.getName();
+            BigDecimal price = currentItem.getPrice();
+            int amount = currentItem.getAmount();
             if (currentItem.getAmount() < 1) {
-                System.out.println(currentItem.getSlotIdentifier() + " " + currentItem.getName() + " Price: $" + currentItem.getPrice() + " | ITEM NO LONGER AVAILABLE");
+                UserOutput.displayInventoryOutOfStock(slotIdentifier, name, price);
             } else {
-                System.out.println(currentItem.getSlotIdentifier() + " " + currentItem.getName() + " Price: $" + currentItem.getPrice() + " | Amount Remaining: " + currentItem.getAmount());
+                UserOutput.displayInventoryPrintout(slotIdentifier, name, price, amount);
             }
         }
     }

@@ -12,6 +12,7 @@ import java.util.Scanner;
  * Dependencies: None
  */
 public class UserInput {
+
     private static Scanner scanner = new Scanner(System.in);
 
     public static String getHomeScreenOption() {
@@ -45,7 +46,7 @@ public class UserInput {
         System.out.println("(S) Select Item");
         System.out.println("(F) Finish Transaction");
         System.out.println();
-        System.out.println("Current Money Provided: " + moneyProvided);
+        System.out.println("Current Money Provided: $" + moneyProvided);
         System.out.println();
         System.out.print("Please select an option: ");
 
@@ -64,15 +65,18 @@ public class UserInput {
     }
 
     public static BigDecimal getFeedMoneyAmount() {
-        System.out.println("Please enter a whole dollar amount.");
-
-            String money = scanner.nextLine();
-            BigDecimal moneyFed = new BigDecimal(money);
-            return moneyFed;
-
-
-        }
-
+        System.out.print("Please enter a whole dollar amount: ");
+        String money = scanner.nextLine();
+        BigDecimal moneyFed = new BigDecimal(money);
+        return moneyFed;
     }
+
+    public static String selectItem() {
+        System.out.println("Please select a menu item: ");
+        String option = scanner.nextLine();
+        return option;
+    }
+
+}
 
 

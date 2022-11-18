@@ -29,4 +29,13 @@ public class UserOutput
         System.out.println();
     }
 
+    public static void displayInventoryPrintout(String slotIdentifier, String name, BigDecimal price, int amount) {
+        System.out.println(slotIdentifier + " " + name + " Price: $" + price + " | Amount Remaining: " + amount);
+
+    }
+
+    public static void displayInventoryOutOfStock(String slotIdentifier, String name, BigDecimal price) {
+        System.out.println(slotIdentifier + " " + name + " Price: $" + price + " | ITEM NO LONGER AVAILABLE");
+    }
+
 }
