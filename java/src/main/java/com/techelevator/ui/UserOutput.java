@@ -61,5 +61,10 @@ public class UserOutput {
     public static void displayNotEnoughFund(){
         System.out.println("fund is not enough!");
     }
+
+    public static void displayInvalidBill() {
+        System.out.println("Please enter a valid bill");
+    }
+
 }
 

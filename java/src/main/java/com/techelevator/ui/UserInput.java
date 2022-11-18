@@ -67,8 +67,13 @@ public class UserInput {
     public static BigDecimal getFeedMoneyAmount() {
         System.out.print("Please enter a whole dollar amount: ");
         String money = scanner.nextLine();
-        BigDecimal moneyFed = new BigDecimal(money);
-        return moneyFed;
+        if(money.equals("1") || money.equals("5") || money.equals("10") || money.equals("20") || money.equals("50") || money.equals("100")) {
+            BigDecimal moneyFed = new BigDecimal(money);
+            return moneyFed;
+        } else {
+            UserOutput.displayInvalidBill();
+            return new BigDecimal(0);
+        }
     }
 
     public static String selectItem() {

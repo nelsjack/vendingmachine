@@ -59,7 +59,7 @@ public class VendingMachine {
                             }
                         }
                     } else if (purchaseChoice.equals("finish transaction")) {
-
+                        returnChange();
                         break;
                     }
                 }
@@ -92,7 +92,7 @@ public class VendingMachine {
     public boolean checkForValidSelection(Item item) {
         BigDecimal discount = new BigDecimal(1);
         BigDecimal discountedPrice = item.getPrice().subtract(discount);
-        if (item.getAmount() > 0 && moneyProvided.compareTo(item.getPrice()) >= 0 || discountAvailable && item.getAmount() > 0 && moneyProvided.compareTo(discountedPrice) >= 0)  {
+        if (item.getAmount() > 0 && moneyProvided.compareTo(item.getPrice()) >= 0 || discountAvailable && item.getAmount() > 0 && moneyProvided.compareTo(discountedPrice) >= 0) {
             return true;
         } else {
             return false;
@@ -110,8 +110,35 @@ public class VendingMachine {
             discountAvailable = true;
         }
     }
-}
 
+    public BigDecimal returnChange() {
+        BigDecimal remainingChange = moneyProvided;
+        int dollars = 0;
+        int quarters = 0;
+        int dimes = 0;
+        int nickels = 0;
+        if (remainingChange.compareTo(new BigDecimal(1)) >= 0) {
+            dollars = remainingChange.divide(new BigDecimal(1)).intValue();
+            remainingChange = remainingChange.remainder(new BigDecimal(1));
+        }
+        if (remainingChange.compareTo(new BigDecimal(0.25)) >= 0) {
+            quarters = remainingChange.divide(new BigDecimal(0.25)).intValue();
+            remainingChange = remainingChange.remainder(new BigDecimal(0.25));
+            System.out.println(remainingChange.compareTo(new BigDecimal(0.05)));
+        }
+        if (remainingChange.compareTo(new BigDecimal(0.10)) >= 0) {
+            dimes = remainingChange.divide(new BigDecimal(0.10), 2, RoundingMode.HALF_EVEN).intValue();
+            remainingChange = remainingChange.remainder(new BigDecimal("0.10"));
+        }
+        if (remainingChange.compareTo(new BigDecimal("0.05")) >= 0) {
+            nickels = remainingChange.divide(new BigDecimal(0.05), 2, RoundingMode.HALF_EVEN).intValue();
+        }
+
+        System.out.println("Your change comes out to " + dollars + " dollars, " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels.");
+        moneyProvided = new BigDecimal(0);
+        return new BigDecimal(0);
+    }
+}
 
 
 
