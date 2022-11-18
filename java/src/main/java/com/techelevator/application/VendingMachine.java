@@ -124,7 +124,7 @@ public class VendingMachine {
             discountAvailable = true;
         }
         String transactionMessage = item.getName() + "      " + item.getSlotIdentifier();
-        writeToAuditFile(startingBalance, moneyProvided, "CHANGE GIVEN:    ");
+        writeToAuditFile(startingBalance, moneyProvided, transactionMessage);
     }
 
     public Map<String, Integer> returnChange() {
@@ -156,6 +156,7 @@ public class VendingMachine {
         changeMap.put("quarters", quarters);
         changeMap.put("dimes", dimes);
         changeMap.put("nickels", nickels);
+        moneyProvided = new BigDecimal(0.00).setScale(2, RoundingMode.HALF_EVEN);
         writeToAuditFile(startingBalance, moneyProvided, "CHANGE GIVEN:    ");
         return changeMap;
     }
