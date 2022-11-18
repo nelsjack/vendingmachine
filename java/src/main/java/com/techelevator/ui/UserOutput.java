@@ -10,18 +10,15 @@ import java.util.Map;
  * 
  * Dependencies: None
  */
-public class UserOutput
-{
+public class UserOutput {
 
-    public static void displayMessage(String message)
-    {
+    public static void displayMessage(String message) {
         System.out.println();
         System.out.println(message);
         System.out.println();
     }
 
-    public static void displayHomeScreen()
-    {
+    public static void displayHomeScreen() {
         System.out.println();
         System.out.println("***************************************************");
         System.out.println("                      Home");
@@ -38,4 +35,31 @@ public class UserOutput
         System.out.println(slotIdentifier + " " + name + " Price: $" + price + " | ITEM NO LONGER AVAILABLE");
     }
 
+    public static void displayDispensingMessage(String name, BigDecimal price, BigDecimal moneyRemaining, String type) {
+        System.out.println("Dispensing " + name + " " + price + ". money Remaining: " + moneyRemaining);
+        if (type.equals("Munchy")) {
+            System.out.println("Munchy, Munchy, So Good!");
+        }
+        if (type.equals("Candy")) {
+            System.out.println("Sugar, Sugar, So Sweet!");
+        }
+        if (type.equals("Drink")) {
+            System.out.println("Drinky, Drinky, Slurp Slurp!");
+        }
+        if (type.equals("Gum")) {
+            System.out.println("Chewy, Chewy, Lots O Bubbles!");
+        }
+    }
+
+    public static void displayItemDoesNotExist() {
+        System.out.println("slot identifier does not match item!");
+    }
+
+    public static void displayItemNoLongerAvailable() {
+        System.out.println("display item no longer available!");
+    }
+    public static void displayNotEnoughFund(){
+        System.out.println("fund is not enough!");
+    }
 }
+
