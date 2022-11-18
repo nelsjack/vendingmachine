@@ -58,7 +58,8 @@ public class UserOutput {
     public static void displayItemNoLongerAvailable() {
         System.out.println("display item no longer available!");
     }
-    public static void displayNotEnoughFund(){
+
+    public static void displayNotEnoughFund() {
         System.out.println("fund is not enough!");
     }
 
@@ -66,5 +67,10 @@ public class UserOutput {
         System.out.println("Please enter a valid bill");
     }
 
+    public static void displayChange(int dollars, int quarters, int dimes, int nickels) {
+
+        System.out.println("Your change comes out to " + dollars + " dollars, " + quarters + " quarters, " + dimes + " dimes, and " + nickels + " nickels.");
+
+    }
 }
 
