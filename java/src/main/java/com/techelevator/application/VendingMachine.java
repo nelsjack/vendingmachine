@@ -123,7 +123,8 @@ public class VendingMachine {
             moneyProvided = moneyProvided.subtract(item.getPrice());
             discountAvailable = true;
         }
-        String transactionMessage = item.getName() + "      " + item.getSlotIdentifier();
+       String spaces = formatTransactionSpaces(item.getName());
+        String transactionMessage = item.getName() + spaces + item.getSlotIdentifier();
         writeToAuditFile(startingBalance, moneyProvided, transactionMessage);
     }
 
@@ -171,6 +172,16 @@ public class VendingMachine {
         } catch (Exception e) {
             System.out.println(" an error occur ");
         }
+    }
+    public String formatTransactionSpaces(String itemName){
+        int numberOfCharacter = 15;
+        int itemNameLength = itemName.length();
+        int numberOfSpaces = numberOfCharacter -itemNameLength;
+        String formattedSpaces ="";
+        for (int i = 0; i < numberOfSpaces ; i++) {
+            formattedSpaces +=" ";
+        }
+        return formattedSpaces;
     }
 }
 
