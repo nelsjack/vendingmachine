@@ -64,7 +64,9 @@ public class VendingMachine {
                             }
                         }
                     } else if (purchaseChoice.equals("finish transaction")) {
-                        returnChange();
+                        BigDecimal startingBalance = moneyProvided;
+                       returnChange();
+                        writeToAuditFile(startingBalance, moneyProvided, "CHANGE GIVEN:    ");
                         break;
                     }
                 }
@@ -128,7 +130,7 @@ public class VendingMachine {
         writeToAuditFile(startingBalance, moneyProvided, transactionMessage);
     }
 
-    public Map<String, Integer> returnChange() {
+    public   Map<String,Integer>  returnChange() {
         BigDecimal startingBalance = moneyProvided;
         BigDecimal remainingChange = moneyProvided;
         int dollars = 0;
@@ -152,13 +154,12 @@ public class VendingMachine {
             nickels = remainingChange.divide(new BigDecimal(0.05), 2, RoundingMode.HALF_EVEN).intValue();
         }
         UserOutput.displayChange(dollars, quarters, dimes, nickels);
-        Map<String, Integer> changeMap = new HashMap<>();
+        Map<String,Integer> changeMap = new HashMap<>();
         changeMap.put("dollars", dollars);
         changeMap.put("quarters", quarters);
         changeMap.put("dimes", dimes);
         changeMap.put("nickels", nickels);
         moneyProvided = new BigDecimal(0.00).setScale(2, RoundingMode.HALF_EVEN);
-        writeToAuditFile(startingBalance, moneyProvided, "CHANGE GIVEN:    ");
         return changeMap;
     }
 
@@ -182,6 +183,14 @@ public class VendingMachine {
             formattedSpaces +=" ";
         }
         return formattedSpaces;
+    }
+
+    public void setMoneyProvided(BigDecimal moneyProvided) {
+        this.moneyProvided = moneyProvided;
+    }
+
+    public void setDiscountAvailable(boolean discountAvailable) {
+        this.discountAvailable = discountAvailable;
     }
 }
 
